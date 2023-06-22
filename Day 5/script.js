@@ -34,24 +34,83 @@ const solvePuzzle1 = () => {
     }
     
     const checkProhibitedStrings = (string) => {
-        let subStrings = [];
+        let substrings = [];
         let prohibitedStrings = ['ab', 'cd', 'pq', 'xy'];
         for (let i = 0; i < (string.length - 1); i++) {
             let substring = string.substring(i, i+2)
-            subStrings.push(substring);
+            substrings.push(substring);
         }
         for (let prohibitedString of prohibitedStrings) {
-            if (subStrings.includes(prohibitedString)) {
+            if (substrings.includes(prohibitedString)) {
                 return true;
             }
         }
         return false;
     }
 
+    const checkAllRules = (string) => {
+        if (check3diffVowels(string) && checkDoubleLetter(string) && !checkProhibitedStrings(string)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     let niceStrings = 0;
     
-    for (string of arrayOfStrings) {
-        if (check3diffVowels(string) && checkDoubleLetter(string) && !checkProhibitedStrings(string)) {
+    for (let string of arrayOfStrings) {
+        if (checkAllRules(string)) {
+            niceStrings ++;
+        }
+    }
+    return niceStrings;
+}
+
+const solvePuzzle2 = () => {
+
+    const checkDoublePairOfLetters = (string) => {
+        let substrings = [];
+        for (let i = 0; i < (string.length - 1); i++) {
+            let substring = string.substring(i, i+2)
+            substrings.push(substring);
+        }
+
+        for (let i = 0; i < substrings.length; i++) {
+            for (let j = i + 2; j < substrings.length; j++) {
+                if (substrings[i] === substrings[j]) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+    const checkPairSeparatedByOneLetter = (string) => {
+        let substrings = [];
+        for (let i = 0; i < (string.length - 2); i++) {
+            let substring = string.substring(i, i+3)
+            substrings.push(substring);
+        }
+        for (let subString of substrings) {
+            if (subString[0] === subString[2]) {
+                return true
+            }
+        }
+        return false;
+    }
+
+    const checkAllRules = (string) => {
+        if (checkDoublePairOfLetters(string) && checkPairSeparatedByOneLetter(string)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    let niceStrings = 0;
+
+    for (let string of arrayOfStrings) {
+        if (checkAllRules(string)) {
             niceStrings ++;
         }
     }
@@ -59,3 +118,4 @@ const solvePuzzle1 = () => {
 }
 
 console.log(solvePuzzle1());
+console.log(solvePuzzle2());
