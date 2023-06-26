@@ -1,5 +1,4 @@
 const fs = require('fs');
-const { get } = require('http');
 const data = fs.readFileSync('puzzle.txt');
 const puzzle = data.toString();
 const arrayOfInstructions = puzzle.split('\n');
