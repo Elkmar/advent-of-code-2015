@@ -72,9 +72,30 @@ const getShortestTraject = (allPossibleRoutes) => {
     return shortestTraject;
 }
 
+const getLongestTraject = (allPossibleRoutes) => {
+
+    let longestDistance;
+    let longestTraject;
+
+    for (let route of allPossibleRoutes) {
+        if (!longestDistance || route[route.length - 1] > longestDistance) {
+            longestDistance = route[route.length - 1];
+            longestTraject = route;
+        }
+    }
+
+    return longestTraject;
+}
+
 const getAnswer1 = () => {
     let shortestTraject = getShortestTraject(allPossibleRoutes);
-    console.log('Answer1 : The shortest traject go through ' + shortestTraject[0] + ', ' + shortestTraject[1] + ', ' + shortestTraject[2] + ', ' + shortestTraject[3] + ', ' + shortestTraject[4] + ', ' + shortestTraject[5] + ', ' + shortestTraject[6] + ', ' + shortestTraject[7] + ' and has a distance of ' + shortestTraject[8]);
+    console.log('Answer 1 : The shortest traject go through ' + shortestTraject[0] + ', ' + shortestTraject[1] + ', ' + shortestTraject[2] + ', ' + shortestTraject[3] + ', ' + shortestTraject[4] + ', ' + shortestTraject[5] + ', ' + shortestTraject[6] + ', ' + shortestTraject[7] + ' and has a distance of ' + shortestTraject[8]);
+}
+
+const getAnswer2 = () => {
+    let longestTraject = getLongestTraject(allPossibleRoutes);
+    console.log('Answer 2 : The longest traject go through ' + longestTraject[0] + ', ' + longestTraject[1] + ', ' + longestTraject[2] + ', ' + longestTraject[3] + ', ' + longestTraject[4] + ', ' + longestTraject[5] + ', ' + longestTraject[6] + ', ' + longestTraject[7] + ' and has a distance of ' + longestTraject[8]);
 }
 
 getAnswer1();
+getAnswer2();
