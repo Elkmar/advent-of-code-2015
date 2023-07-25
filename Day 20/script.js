@@ -13,7 +13,7 @@ const findMinimumHouse = (visitMax, gifts, targetGifts) => {
         let visits = 0;
 
         // The elf visits all houses that are a multiple of its number
-        for (let house = elf; house < targetGifts / 10; house += elf) {
+        for (let house = elf; house < targetGifts / 10 && visits < visitMax ; house += elf) {
 
             if(!houseGifts[house]){
                 houseGifts[house] = 0;
@@ -26,10 +26,6 @@ const findMinimumHouse = (visitMax, gifts, targetGifts) => {
             }
 
             visits++;
-
-            if (visits === visitMax) {
-                break;
-            }
         }
     }
     return minimumHouse;
