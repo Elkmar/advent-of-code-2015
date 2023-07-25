@@ -12,6 +12,7 @@ const findMinimumHouse = (visitMax, gifts, targetGifts) => {
 
         let visits = 0;
 
+        // The elf visits all houses that are a multiple of its number
         for (let house = elf; house < targetGifts / 10; house += elf) {
 
             if(!houseGifts[house]){
@@ -20,8 +21,6 @@ const findMinimumHouse = (visitMax, gifts, targetGifts) => {
 
             houseGifts[house] += gifts * elf;
 
-            // If the current house has received at least 'targetGifts' gifts
-            // and its number is lower than the current 'minimumHouse', update 'minimumHouse'.
             if (houseGifts[house] >= targetGifts && house < minimumHouse) {
             minimumHouse = house;
             }
