@@ -72,7 +72,7 @@ const castSpell = (spell, player, boss) => {
 }
 
 // Play the player's turn
-const playerTurn = (player, boss, spell, mode) => {
+const playerTurn = (player, boss, spell, mode = 'normal') => {
 
     if (mode === 'hard') {
         player.HP--;
@@ -119,7 +119,7 @@ const findCheapestWin = (currentPlayer, boss, spells, manaSpent = 0, mode) => {
     for (let spell of spells) {
 
         // If the currentPlayer doesn't have enough mana to cast the spell or if the currentPlayer already has the spell active, we can skip it.
-        if (currentPlayer.mana < spell.cost || currentPlayer.activeSpells.some(activeSpell => activeSpell[0].name === spell.name)) {
+        if (currentPlayer.mana < spell.cost || currentPlayer.activeSpells.some(activeSpell => activeSpell[0].name === spell.name && activeSpell[1] > 1)) {
             continue;
         }
 
@@ -154,7 +154,7 @@ const findCheapestWin = (currentPlayer, boss, spells, manaSpent = 0, mode) => {
     }
 }
 
-findCheapestWin(player, boss, spells, 0, 'normal');
+findCheapestWin(player, boss, spells, 0);
 console.log('Part 1 :', minimumManaSpent);
 
 minimumManaSpent = Infinity;
