@@ -1,4 +1,3 @@
-const { debug } = require('console');
 const fs = require('fs');
 const puzzle = fs.readFileSync('./puzzle.txt', 'utf-8').split('\n');
 
@@ -7,10 +6,12 @@ const executeInstructions = (instructions, a, b) => {
     for (let index = 0; index < instructions.length; index++) {
         
         let instruction = instructions[index].split(' ');
+        // the first is always the operation, the second is the argument or a number depending on the operation and there is a third argument if the operation is jie or jio
         let operation = instruction[0];
         let argument = instruction[1].replace(',', '').replace('+', '');
         let third = instruction.length === 3 ? Number(instruction[2].substring(1)) : null;
 
+        //just follow the instructions given 
         switch (operation) {
             case 'hlf':
                 argument = argument === 'a' ? a /= 2 : b /= 2;
